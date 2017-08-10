@@ -11,7 +11,7 @@ exports.fetch = function (url) {
         var rq = new XMLHttpRequest();
         rq.addEventListener('progress', function (pe) {
             if (pe.lengthComputable) {
-                document.getElementById("monitor").innerHTML = '<p> Progress: ' + Math.floor(pe.loaded / pe.total) * 100 + ' %</p>';
+                /* document.getElementById("monitor").innerHTML = '<p> Progress: ' + Math.floor(pe.loaded / pe.total) * 100 + ' %</p>'; */
 
             }
         });

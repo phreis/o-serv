@@ -5,7 +5,7 @@
   "main": "demo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "watchify ./src/demo.js -o ./dist/bundle.js",
+    "bundle": "watchify --debug ./src/demo.js -o ./dist/bundle.js",
     "start": "nginx && echo \"nginx started\"",
     "build": "tsc",
      "build-dev": "tsc --watch & npm run bundle" 
