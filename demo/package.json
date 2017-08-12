@@ -5,15 +5,15 @@
   "main": "demo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "watchify --debug ./src/demo.js -o ./dist/bundle.js",
+    "bundle": "watchify --debug ./src/index.js -o ./dist/bundle.js",
     "start": "nginx && echo \"nginx started\"",
-    "build": "tsc",
-     "build-dev": "tsc --watch & npm run bundle" 
+    "build": "webpack --watch",
+    "build-prod": "webpack -p"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "webpack": "^3.5.3"
   }
 }

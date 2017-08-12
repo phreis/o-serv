@@ -26,6 +26,7 @@ exports.fetch = function (url) {
             }
         };
         rq.open('GET', url);
+        rq.setRequestHeader("x-filename", "Hugo");
         rq.send();
     });
 }
