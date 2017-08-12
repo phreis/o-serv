@@ -1,35 +1,45 @@
-  var oreq = require('./o-req.js');
-  exports.mySingleton = (function () {
+var oreq = require('./o-req.js');
+require('rxjs/add/operator/map');
+exports.mySingleton = (function () {
   // Instance stores a reference to the Singleton
   var instance;
   function init(url) {
     // Singleton
     // Private methods and variables
-    function privateMethod(){
-        console.log( "I am private" );
+    const _baseUrl = url;
+    function _entityMap(response) {
+      return _getResultEntity(response);
+    };
+    function _getResultEntity(obj) {
+      let _hit = null;
+      for (const i in obj) {
+        if (Object.prototype.toString.call(obj[i]) == '[object Array]') {
+          return obj[i];
+        }
+        if (_hit == null && (Object.prototype.toString.call(obj[i]) == '[object Object]')) {
+          _hit = _getResultEntity(obj[i]);
+        }
+      }
+      return _hit;
     }
-    var _url = url;
-    
-    var privateRandomNumber = Math.random();
+
+
     return {
       // Public methods and variables
-      publicMethod: function () {
-        console.log( "The public can see me!" );
-      },
-      publicProperty: "I am also public",
-      getRandomNumber: function() {
-        return privateRandomNumber;
-      },
-    getEntitySkipTop: function(entitySetName,skip,top) {
-return oreq.fetch(_url);
-    }
+      getEntitySkipTop: function (entitySetName, skip, top) {
+        const _url = _baseUrl + entitySetName + '/?$skip=' + skip + '&$top=' + top;
+
+        oreq.Observable = oreq.fetch(_url); //.map(_entityMap);
+        return oreq.Observable.map(_entityMap);
+      }
+
     };
   };
   return {
     // Get the Singleton instance if one exists
     // or create one if it doesn't
     getInstance: function (url) {
-      if ( !instance ) {
+      if (!instance) {
         instance = init(url);
       }
       return instance;

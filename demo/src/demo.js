@@ -6,7 +6,7 @@
 
 }); */
 var mod = omodel.mySingleton.getInstance("/V3/Northwind/Northwind.svc/");
-mod.getEntitySkipTop('entitySetName','skip','top').subscribe({
+mod.getEntitySkipTop('Products','0','10').subscribe({
   next: res => {  document.getElementById("demo").innerText = res;   },
   error: err => {  document.getElementById("demo").innerText = err;   } 
 
