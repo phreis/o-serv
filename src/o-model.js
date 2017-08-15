@@ -1,6 +1,8 @@
 var oreq = require('./o-req.js');
 require('rxjs/add/operator/map');
-exports.mySingleton = (function () {
+
+
+export function mySingleton() {
   // Instance stores a reference to the Singleton
   var instance;
   function init(url) {
@@ -61,4 +63,4 @@ exports.mySingleton = (function () {
       return instance;
     }
   };
-})();
+}; 
