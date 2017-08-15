@@ -8,7 +8,7 @@ exports.mySingleton = (function () {
     // Private methods and variables
     const _baseUrl = url;
     function _entityMap(response) {
-      return _getResultEntity(response);
+      return _getResultEntity(JSON.parse(response));
     };
     function _getResultEntity(obj) {
       let _hit = null;
@@ -26,10 +26,26 @@ exports.mySingleton = (function () {
 
     return {
       // Public methods and variables
+      getTransmissionState: function () {
+
+        return oreq.state();
+      },
+
       getEntitySkipTop: function (entitySetName, skip, top) {
         const _url = _baseUrl + entitySetName + '/?$skip=' + skip + '&$top=' + top;
 
-        oreq.Observable = oreq.fetch(_url); //.map(_entityMap);
+        var header = [
+          {
+            key: "accept",
+            value: "application/json"
+          },
+          {
+            key: "Authorization",
+            value: "Basic REVWRUxPUEVSOmJ1c2luZXNz"
+          },
+        ];
+
+        oreq.Observable = oreq.get(_url, header); //.map(_entityMap);
         return oreq.Observable.map(_entityMap);
       }
 
