@@ -1,6 +1,6 @@
 /*   var omodel = require('../../src/o-model.js'); */
 import { mySingleton } from '../../src/o-model.js';
-import { Model } from '../../src/o-model2.js';
+import { Model } from '../../src/o-model3.ts';
 /* var oreq = require('../../src/o-req.js');
   oreq.fetch("/V3/Northwind/Northwind.svc/").subscribe({
   next: res => {  document.getElementById("demo").innerText = res;   },
