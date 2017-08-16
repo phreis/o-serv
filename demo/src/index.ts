@@ -1,18 +1,10 @@
-/*   var omodel = require('../../src/o-model.js'); */
-import { mySingleton } from '../../src/o-model.js';
-import { Model } from '../../src/o-model3.ts';
-/* var oreq = require('../../src/o-req.js');
-  oreq.fetch("/V3/Northwind/Northwind.svc/").subscribe({
-  next: res => {  document.getElementById("demo").innerText = res;   },
-  error: err => {  document.getElementById("demo").innerText = err;   } 
+import { Model } from './../../src/o-model3';
+import { OModel } from './../../src/o-model';
 
-}); */
-//var mod = omodel.mySingleton.getInstance("/V3/Northwind/Northwind.svc/");
-
-var mod = mySingleton().getInstance("/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/");
+var mod = new OModel("/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/");
 mod.getEntitySkipTop('BusinessPartnerSet', '0', '10').subscribe({
   next: res => {
-    document.getElementById("demo").innerText = res//[1].CompanyName
+    document.getElementById("demo").innerText = res.toString();//[1].CompanyName
     ;
   },
   error: err => { document.getElementById("demo").innerText = err; }
@@ -23,7 +15,5 @@ mod.getEntitySkipTop('BusinessPartnerSet', '0', '10').subscribe({
     ;
   }
 }) */
-var mymodel = new Model("hello");
-mymodel.url = "hugo";
-mymodel.sayhi();
+
 

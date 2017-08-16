@@ -1,21 +1,13 @@
 
 
-var Observable = require('rxjs/Observable').Observable;
+import { Observable } from 'rxjs/Observable';
 var state = "";
 
-exports.echo = function (str) {
-    console.log(str);
-};
 
-exports.state = function () {
+export class ORequest {
 
-    return Observable.create(observer => {
-setInterval( () => {observer.next(state); },1000);
-    })
-}
-
-exports.get = function (url,header) {
-    return Observable.create(observer => {
+get(url: string,header: any[]): Observable<Object[]> {
+    return Observable.create((observer: any) => {
         var rq = new XMLHttpRequest();
         rq.addEventListener('progress', function (pe) {
             if (pe.lengthComputable) {
@@ -26,7 +18,6 @@ exports.get = function (url,header) {
         rq.onreadystatechange =  function () {
 
             if (rq.readyState === 4) {
-                setState('finished');
                 if (rq.status === 200) {
                     observer.next(rq.response);
                 } else {
@@ -38,13 +29,7 @@ exports.get = function (url,header) {
         header.forEach(head => {
             rq.setRequestHeader(head.key, head.value);
         });
-
-
-
         rq.send();
     });
 }
-function setState(s) {
-this.state = s;
-
-     }
+}
