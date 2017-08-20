@@ -3,6 +3,7 @@
 /node_modules
 /demo/dist
 /demo/node_modules
-
+/demo_react/dist
+/demo_react/node_modules
 
 

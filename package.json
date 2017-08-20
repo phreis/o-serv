@@ -1,8 +1,8 @@
 {
-  "name": "o-req",
+  "name": "o-request",
   "version": "1.0.0",
   "description": "RxJS XMLHttpRequest",
-  "main": "index.js",
+  "main": "./src/o-model.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
