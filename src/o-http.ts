@@ -3,10 +3,14 @@
 import { Observable } from 'rxjs/Observable';
 var state = "";
 
+export interface OHeader {
+key: string;
+value: string;
+};
 
-export class ORequest {
+export class OHttp {
 
-get(url: string,header: any[]): Observable<Object[]> {
+public get(url: string,header: any[]): Observable<Object[]> {
     return Observable.create((observer: any) => {
         var rq = new XMLHttpRequest();
         rq.addEventListener('progress', function (pe) {

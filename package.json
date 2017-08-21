@@ -2,13 +2,19 @@
   "name": "o-request",
   "version": "1.0.0",
   "description": "RxJS XMLHttpRequest",
-  "main": "./src/o-model.ts",
+  "main": "./dist/o-model.js",
+  "types": "./dist/o-model.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --watch",
+    "prepublish": "npm run build"
   },
   "author": "Philipp Reisinger",
   "license": "MIT",
   "dependencies": {
     "rxjs": "^5.4.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.4.2"
   }
 }

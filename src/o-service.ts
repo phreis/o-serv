@@ -1,14 +1,13 @@
-import { OHttp } from './o-http';
 import { Observable } from 'rxjs/Observable';
-
+import { OHttp, OHeader } from './o-http';
 
 import 'rxjs/add/operator/map';
 
-export class OModel {
-  private _baseUrl: string = '';
+export class OService {
+  private _serviceRootUrl: string = '';
   private http: OHttp = new OHttp();
-  constructor(_url: string) {
-    this._baseUrl = _url;
+  constructor(url: string, headers: OHeader[]) {
+    this._serviceRootUrl = url;
   };
 
   private _getResultEntity(obj: Object): Object {
@@ -29,7 +28,7 @@ private _entityMap(response) {
 
 
   public getEntitySkipTop(entitySetName: string, skip: string, top: string): Observable<Object> {
-    const _url = this._baseUrl + entitySetName + '/?$skip=' + skip + '&$top=' + top;
+    const _url = this._serviceRootUrl + entitySetName + '/?$skip=' + skip + '&$top=' + top;
 
     var header = [
       {
