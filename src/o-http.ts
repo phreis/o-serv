@@ -10,7 +10,7 @@ value: string;
 
 export class OHttp {
 
-public get(url: string,header: any[]): Observable<Object[]> {
+public get(url: string,header: OHeader[]): Observable<Object[]> {
     return Observable.create((observer: any) => {
         var rq = new XMLHttpRequest();
         rq.addEventListener('progress', function (pe) {

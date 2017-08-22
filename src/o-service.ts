@@ -30,7 +30,7 @@ private _entityMap(response) {
   public getEntitySkipTop(entitySetName: string, skip: string, top: string): Observable<Object> {
     const _url = this._serviceRootUrl + entitySetName + '/?$skip=' + skip + '&$top=' + top;
 
-    var header = [
+    var headers: OHeader[]  = [
       {
         key: "accept",
         value: "application/json"
@@ -39,9 +39,10 @@ private _entityMap(response) {
         key: "Authorization",
         value: "Basic REVWRUxPUEVSOmJ1c2luZXNz"
       },
-    ];
+    ];  
 
-    return this.http.get(_url, header).map(this._entityMap,this);
+
+    return this.http.get(_url, headers).map(this._entityMap);
   }
 
 }
