@@ -1,15 +1,35 @@
 import { Observable } from 'rxjs/Observable';
 import { OHttp, OHeader } from './o-http';
+import { OModel } from './o-model';
 
 import 'rxjs/add/operator/map';
 
 export class OService {
+  private static me: OService[] = [];
   private _serviceRootUrl: string = '';
+  private _modelContainer: OModel[];
+  private _headers: OHeader[] = [
+    {
+      key: "accept",
+      value: "application/json"
+    }
+  ];;
   private http: OHttp = new OHttp();
-  constructor(url: string, headers: OHeader[]) {
+  private constructor(url: string, headers?: OHeader[]) {
     this._serviceRootUrl = url;
+    if(headers) this._headers = this._headers.concat(headers);
   };
 
+  public static getInstance(url: string, headers?: OHeader[]): OService {
+    let candidate:OService = this.me.find((m) => {return m._serviceRootUrl == url})
+    if (!candidate) { candidate = new OService(url, headers);
+    this.me.push(candidate); }
+    return candidate;
+  }
+
+  public getModel(resourcePath: string): OModel {
+    return new OModel(this._serviceRootUrl, resourcePath, this._headers)
+  }
   private _getResultEntity(obj: Object): Object {
     let _hit = null;
     for (const i in obj) {
@@ -22,27 +42,11 @@ export class OService {
     }
     return _hit;
   };
-private _entityMap(response) {
-  return this._getResultEntity(JSON.parse(response));
-};
+  private _entityMap(response) {
+    return this._getResultEntity(JSON.parse(response));
+  };
 
 
-  public getEntitySkipTop(entitySetName: string, skip: string, top: string): Observable<Object> {
-    const _url = this._serviceRootUrl + entitySetName + '/?$skip=' + skip + '&$top=' + top;
 
-    var headers: OHeader[]  = [
-      {
-        key: "accept",
-        value: "application/json"
-      },
-      {
-        key: "Authorization",
-        value: "Basic REVWRUxPUEVSOmJ1c2luZXNz"
-      },
-    ];  
-
-
-    return this.http.get(_url, headers).map(this._entityMap);
-  }
 
 }

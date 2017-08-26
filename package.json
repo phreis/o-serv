@@ -2,8 +2,8 @@
   "name": "o-request",
   "version": "1.0.0",
   "description": "RxJS XMLHttpRequest",
-  "main": "./dist/o-model.js",
-  "types": "./dist/o-model.d.ts",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --watch",
