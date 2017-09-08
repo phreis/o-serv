@@ -5,6 +5,10 @@
 /demo/node_modules
 /demo_react/dist
 /demo_react/node_modules
+/demo_react2/node_modules
 /dist
+/lib
+/lib-esm
+/_bundles
 
 

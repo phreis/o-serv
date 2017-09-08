@@ -1,16 +1,21 @@
+
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "inlineSourceMap": true,
-    "noImplicitAny": false,
+    "moduleResolution": "node",
     "module": "commonjs",
-    "target": "es2015",
-    "jsx": "react",
-    "declaration": true
+    "target": "es5",
+    "lib": [ "es2015", "dom" ],
+    "outDir": "lib",
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "declaration": true,
+    "jsx": "react"
   },
-  "include": [
-      "./src/**/*"
-  ]
+  "files": [
+    "./src/main.ts"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false
 }
-
-

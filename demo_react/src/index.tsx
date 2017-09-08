@@ -1,5 +1,5 @@
 //import { OModel } from './../../src/o-model'; 
-import { OService, OModel, OHeader } from 'o-request';
+import { OService, OModel, OHeader  } from 'o-request';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -10,16 +10,30 @@ var NPLAuthHeader: OHeader[] = [
   },
 ];
 
-OService.getInstance("/V3/Northwind/Northwind.svc/")
-  .getModel('Products')
-  .getEntitySkipTop('0', '10')
-   .subscribe({
+/* const serv = OService.getInstance("/V3/Northwind/Northwind.svc/");
+  serv.getModel('Products') */
+
+  const serv = OService.getInstance("/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/", NPLAuthHeader);
+const model = serv.getModel('BusinessPartnerSet');
+model.getEntitySkipTop('0', '2')
+  .subscribe({
     next: res => {
-      document.getElementById("demo").innerText = res.toString();//[1].CompanyName
-      ;
+      document.getElementById("demo").innerText = res[0]['CompanyName']//JSON.stringify(res);//res.toString();//[1].CompanyName
+
+      Object.keys(res).forEach(ent => {
+        Object.keys(ent).forEach(key => {
+
+          console.log(ent[key]);
+        })
+          ;
+      })
     },
     error: err => { document.getElementById("demo").innerText = err; }
   });
+model.getMetadata().subscribe({ next: res => { document.getElementById("meta").innerText = res.toString(); } });
+
+
+
 
 export class HelloMessage extends React.Component {
   props: any;
@@ -27,7 +41,7 @@ export class HelloMessage extends React.Component {
     return React.createElement(
       "div",
       null,
-      "Hello kjh ",
+      "Hello  sdf",
       this.props.name
     );
   }

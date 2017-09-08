@@ -2,19 +2,23 @@
   "name": "o-request",
   "version": "1.0.0",
   "description": "RxJS XMLHttpRequest",
-  "main": "./dist/main.js",
-  "types": "./dist/main.d.ts",
+  "main": "./_bundles/my-lib.min.js",
+  "types": "./lib/main.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --watch",
-    "prepublish": "npm run build"
+    "clean": "shx rm -rf _bundles lib lib-esm",
+    "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack"
   },
   "author": "Philipp Reisinger",
   "license": "MIT",
   "dependencies": {
-    "rxjs": "^5.4.2"
+    "rxjs": "^5.4.2",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "typescript": "^2.4.2"
+    "awesome-typescript-loader": "^3.2.3",
+    "shx": "^0.2.2",
+    "ts-loader": "^2.3.4",
+    "typescript": "^2.4.2",
+    "webpack": "^3.5.5"
   }
 }
