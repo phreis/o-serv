@@ -4,8 +4,8 @@
 /demo/dist
 /demo/node_modules
 /dist
-/lib
+#/lib
 /lib-esm
-/_bundles
+#/_bundles
 
 
