@@ -13,7 +13,7 @@ npm install --save o-serv
 
 ## Usage
 
-Please checkout the Demo for usage.
+Please checkout the [Demo](https://github.com/phreis/o-serv/blob/master/demo/src/index.ts) for usage.
 
 
 

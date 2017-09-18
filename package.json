@@ -11,6 +11,11 @@
   },
   "author": "Philipp Reisinger <philippr00@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phreis/o-serv.git"
+  },
+  "homepage": "https://github.com/phreis/o-serv.git#readme",
   "dependencies": {
     "rxjs": "^5.4.2",
     "xml2js": "^0.4.19"
