@@ -1,6 +1,6 @@
 {
   "name": "o-serv",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "OData Service API (experimental)",
   "main": "./_bundles/o-serv.min.js",
   "types": "./lib/main.d.ts",
