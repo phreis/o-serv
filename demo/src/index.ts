@@ -4,7 +4,7 @@ import { OService, OModel, OHeader  } from 'o-serv';
 var NPLAuthHeader: OHeader[] = [
   {
     key: "Authorization",
-    value: "Basic REVWRUxPUEVSOmJ1c2luZXNz"
+    value: "Basic REVWRUxPUEVSOmJ1c2luZXN"
   },
 ];
 
