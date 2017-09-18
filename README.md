@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/o-serv.svg)]()
 [![downloads](https://img.shields.io/npm/dm/o-serv.svg)]()
 
-A experimental component to access data provided by an [Odata](http://www.odata.org/) source.
+An experimental component to access data provided by an [Odata](http://www.odata.org/) source.
 
 ## Installation
 To use o-serv in your project install it via [npm](https://www.npmjs.com/package/o-serv):
