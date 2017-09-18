@@ -1,6 +1,6 @@
 
-import { OService, OModel, OHeader  } from 'o-serv';
-//import { OService, OModel, OHeader, OHttp } from '../../src/main';
+//import { OService, OModel, OHeader  } from 'o-serv';
+import { OService, OModel, OHeader, OHttp } from '../../src/main';
 var NPLAuthHeader: OHeader[] = [
   {
     key: "Authorization",
