@@ -1,20 +1,29 @@
-import { Model } from './../../src/o-model3';
-import { OModel } from './../../src/o-model';
-var mod1 = new OModel("/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/");
-var mod2 = new OModel("/V3/Northwind/Northwind.svc/");
-/* mod1.getEntitySkipTop('BusinessPartnerSet', '0', '10').subscribe({
-  next: res => {
-    document.getElementById("demo").innerText = res.toString();//[1].CompanyName
-    ;
+
+//import { OService, OModel, OHeader  } from 'o-serv';
+import { OService, OModel, OHeader, OHttp } from '../../src/main';
+var NPLAuthHeader: OHeader[] = [
+  {
+    key: "Authorization",
+    value: "Basic REVWRUxPUEVSOmJ1c2luZXNz"
   },
-  error: err => { document.getElementById("demo").innerText = err; }
-}); */
-mod2.getEntitySkipTop('Products', '0', '10').subscribe({
-  next: res => {
-    document.getElementById("demo").innerText = res.toString();//[1].CompanyName
-    ;
-  },
-  error: err => { document.getElementById("demo").innerText = err; }
-});
+];
+
+/* const serv = OService.getInstance("/V3/Northwind/Northwind.svc/");
+  serv.getModel('Products') */
+
+const serv = OService.getInstance("/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/", NPLAuthHeader);
+const model = serv.getModel('BusinessPartnerSet');
+model.getEntitySkipTop('0', '2')
+  .subscribe({
+    next: res => {
+      document.getElementById("demo").innerText = res[0]['CompanyName']//JSON.stringify(res);//res.toString();//[1].CompanyName
+      Object.keys(res).forEach(key => {
+        Object.keys(res[key]).forEach(fieldname => {console.log(fieldname+' : '+res[key][fieldname]);})
+      })
+    },
+    error: err => { document.getElementById("demo").innerText = err; }
+  });
+//model.getMetadata().subscribe( res => { console.log(res) });
+
 
 

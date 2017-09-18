@@ -12,8 +12,8 @@ var config = {
   // the name to filter the second entry point for applying code
   // minification via UglifyJS
   entry: {
-    'my-lib': [PATHS.entryPoint],
-    'my-lib.min': [PATHS.entryPoint]
+    'o-serv': [PATHS.entryPoint],
+    'o-serv.min': [PATHS.entryPoint]
   },
   // The output defines how and where we want the bundles. The special
   // value `[name]` in `filename` tell Webpack to use the name we defined above.
@@ -23,7 +23,7 @@ var config = {
     path: PATHS.bundles,
     filename: '[name].js',
     libraryTarget: 'umd',
-    library: 'MyLib',
+    library: 'o-serv',
     umdNamedDefine: true
   },
   // Add resolve for `tsx` and `ts` files, otherwise Webpack would

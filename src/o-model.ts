@@ -1,9 +1,6 @@
 import { OService } from './o-service';
 import { OHttp, OHeader } from './o-http';
 import { Observable } from 'rxjs/Observable';
-
-
-
 import 'rxjs/add/operator/map';
 
 export class OModel {
@@ -29,17 +26,28 @@ export class OModel {
   };
   private _entityMap(response) {
     return this._getResultEntity(JSON.parse(response));
-};
+  };
 
   public getMetadata(): Observable<Object> {
-  //TODO: parse entity set name from resourcePath, somehow
-    return this._service.getMetadataPropertiesOfSet(this._resourcePath); 
+    //TODO: parse entity set name from resourcePath, somehowkj
+    return this._service.getMetadataPropertiesOfSet(this._resourcePath);
   }
 
   public getEntitySkipTop(skip: string, top: string): Observable<Object> {
 
-    const _url = this._service.get_serviceRootUrl() + this._resourcePath  + '/?$skip=' + skip + '&$top=' + top;
+    const _url = this._service.get_serviceRootUrl() + this._resourcePath + '/?$skip=' + skip + '&$top=' + top;
     return this.http.get(_url, this._service.get_headers()).map(this._entityMap, this);
   }
 
+  public count(): Observable<Object> {
+    const _url = this._service.get_serviceRootUrl() + this._resourcePath + '/$count';
+    //e.g. Northwind does not like acceptt json for %count 
+    //TODO: refactor mybe introduce some 'heda.default' or so...
+    const _headers = this._service.get_headers()
+                                  .filter(head => { !(head.key=='accept' && head.value=='application/json') })
+    return this.http.get(_url, _headers );
+
+  }
+
 }
+

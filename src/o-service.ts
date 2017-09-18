@@ -3,14 +3,14 @@ import { OHttp, OHeader } from './o-http';
 import { OModel } from './o-model';
 import { parseString } from 'xml2js';
 import 'rxjs/add/operator/map';
-
-
+import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/publishReplay';
 
 export class OService {
   private static me: OService[] = [];
   private _serviceRootUrl: string = '';
   private _modelContainer: OModel[];
-
+  private _metadataBuffer: Observable<object> = null;
   private _headers: OHeader[] = [
     {
       key: "accept",
@@ -23,12 +23,12 @@ export class OService {
     if (headers) this._headers = this._headers.concat(headers);
   };
 
-public get_serviceRootUrl():string {
-  return this._serviceRootUrl;
-}
-public get_headers():OHeader[] {
-  return this._headers;
-}
+  public get_serviceRootUrl(): string {
+    return this._serviceRootUrl;
+  }
+  public get_headers(): OHeader[] {
+    return this._headers;
+  }
   public static getInstance(url: string, headers?: OHeader[]): OService {
     let candidate: OService = this.me.find((m) => { return m._serviceRootUrl == url })
     if (!candidate) {
@@ -39,8 +39,11 @@ public get_headers():OHeader[] {
   }
 
   private getMetadata(): Observable<Object> {
-    const _url = this._serviceRootUrl + '$metadata';
-    return this.http.get(_url).map(this._parseXML);//TODO: attach auth header
+    if (!this._metadataBuffer) {
+      const _url = this._serviceRootUrl + '$metadata';
+      this._metadataBuffer = this.http.get(_url).map(this._parseXML).publishReplay(1).refCount();
+    }
+    return this._metadataBuffer;
   };
 
   public getModel(resourcePath: string): OModel {
@@ -117,6 +120,6 @@ public get_headers():OHeader[] {
     return _hit;
   }
 }
-  
+
 
 

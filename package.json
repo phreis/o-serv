@@ -1,14 +1,15 @@
 {
-  "name": "o-request",
+  "name": "o-serv",
   "version": "1.0.0",
-  "description": "RxJS XMLHttpRequest",
-  "main": "./_bundles/my-lib.min.js",
+  "description": "OData Service API (experimental)",
+  "main": "./_bundles/o-serv.min.js",
   "types": "./lib/main.d.ts",
+  "unpkg": "./_bundles/o-serv.min.js",
   "scripts": {
     "clean": "shx rm -rf _bundles lib lib-esm",
-    "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack"
+    "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack --watch"
   },
-  "author": "Philipp Reisinger",
+  "author": "Philipp Reisinger <philippr00@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "rxjs": "^5.4.2",
@@ -17,8 +18,11 @@
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.3",
     "shx": "^0.2.2",
-    "ts-loader": "^2.3.4",
     "typescript": "^2.4.2",
     "webpack": "^3.5.5"
-  }
+  },
+  "files": [
+    "./_bundles/o-serv.min.js",
+    "./lib/main.d.ts"
+  ]
 }
