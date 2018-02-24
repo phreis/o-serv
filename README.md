@@ -1,7 +1,6 @@
 # o-serv
 
 [![npm](https://img.shields.io/npm/v/o-serv.svg)]()
-[![downloads](https://img.shields.io/npm/dm/o-serv.svg)]()
 
 An experimental component to access data provided by an [Odata](http://www.odata.org/) source.
 
